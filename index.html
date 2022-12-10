@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MQTT Web Client</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <main>
+        <div class="left_nav d-flex flex-column justify-content-between">
+            <div class="titl_div">
+                <h1 class="title">MQTT Web Client</h1>
+            </div>
+            <div class="debug_window">
+                <div class="debug_title">
+                    <p class="debug_title_elemets">Debug Messages</p>
+                </div>
+                <div id="debug_window">
+                    <div class="msg"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="status_bar">
+            <div class="con_status_div">
+                <p id="con_status" class="con_status"><b>Disconnected</b></p><span class="disc_btn"
+                    id="disconect_btn"><i class="material-icons">highlight_off</i></span>
+            </div>
+            <div class="conf_exp">
+                <img class="exp_btn" id="conf_exp" src="https://i.ibb.co/Km857JY/drop-btn-up.png" alt="drop-btn-up"
+                    border="0">
+            </div>
+        </div>
+
+        <div class="conf_div">
+            <div class="conf_a">
+                <div class="input_div a">
+                    <label for="host" class="label_name">
+                        <span class="content_name"> Host :</span>
+                    </label>
+                    <input name="host" id="host" placeholder="eg: test.mosquitto.org" value="test.mosquitto.org">
+                </div>
+                <div class="input_div a">
+                    <label for="port" class="label_name">
+                        <span class="content_name"> Port :</span>
+                    </label>
+                    <input name="port" id="port" placeholder="eg: 8080" value="8080">
+                </div>
+                <div class="input_div a">
+                    <label for="clientId" class="label_name">
+                        <span class="content_name"> Client ID :</span>
+                    </label>
+                    <input name="clientId" id="clientId"><br><br>
+                </div>
+            </div>
+            <div class="conf_b">
+                <div class="input_div b">
+                    <label for="userName" class=" label_name ">
+                        <span class="content_name "> User name :</span>
+                    </label>
+                    <input name="userName" id="userName">
+                </div>
+                <div class="input_div b">
+                    <label for="password" class="label_name">
+                        <span class="content_name "> Password :</span>
+                    </label>
+                    <input name="password" id="password">
+                </div>
+                <div class="input_div b">
+                    <label for="keepalive" class="label_name">
+                        <span class="content_name "> Keepalive :</span>
+                    </label>
+                    <input name="keepalive" id="keepalive">
+                </div>
+            </div>
+            <div class="input_div drop_dwn">
+                <label for="qos" class="label_name">
+                    <span class="content_name"> QOS :</span>
+                </label>
+                <select class="select" name="qos" id="qos">
+                    <option value="0 ">0 -Almost Once</option>
+                    <option value="1 ">1 -Atleast Once</option>
+                    <option value="2 ">2 -Exactly Once</option>
+                </select>
+            </div>
+            <button class="btn-primary" id="conf_btn">Submit</button>
+        </div>
+
+        <div class="sub_div ">
+            <h2 class="h4 pb-2 mb-4 text-danger border-bottom border-danger fw-semibold">Subscribe to topic</h2>
+            <div class="input_div">
+                <label for="sub_topic" class="label_name">
+                    <span class="content_name text-dark"> Topic :</span>
+                </label>
+                <input name="sub_topic" id="sub_topic" required><br><br>
+            </div>
+            <button class="btn-primary" id='sub_btn'>Subscribe</button>
+        </div>
+
+        <div class="pub_div">
+            <h2 class="h4 pb-2 mb-4 text-danger border-bottom border-danger fw-semibold">Publish to topic:</h2>
+            <div class="input_div">
+                <label for="pub_topic" class="label_name">
+                    <span class="content_name text-dark"> Topic :</span>
+                </label>
+                <input name="pub_topic" id="pub_topic" required>
+            </div>
+            <div class="input_div pub_msg">
+                <label for="msg" class="label_name">
+                    <span class="content_name text-dark"> Message :</span>
+                </label>
+                <input name="msg" id="msg" required><br><br>
+            </div>
+            <button class='btn-primary' id='pub_btn'>Publish</button>
+        </div>
+
+
+        <div class="sub_debug">
+            <div class="debug_title">
+                <p class="debug_title_elemets">Subscription<b></b><span id="activeTopic"></span></b></p>
+                <button class="btn btn-danger unsub_btn" id='un_sub_btn'>Unsubscribe</button>
+                <i class="material-icons dwnld_btn" id="dwnld_btn" title="Download data in CSV format">get_app</i>
+            </div>
+            <div id="sub_debug_window">
+            </div>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mqtt/4.2.1/mqtt.js"
+        integrity="sha512-ctN+F/mleGxWhB1Ip2/Rpp6oGBxM8Ho8Ajk+qpCB/iUDPCQRuRWIv7ydSRjpr+K8abKtNfjA1/9P4eLu2NS8kg=="
+        crossorigin="anonymous"></script>
+    <script src="scripts/main.js "></script>
+</body>
+
+</html>
